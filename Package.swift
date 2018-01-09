@@ -1,9 +1,19 @@
+// swift-tools-version:4.0
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 import PackageDescription
 
 let package = Package(
     name: "HttpSwift",
+    products: [
+        .library(name: "HttpSwift",
+                 targets: ["HttpSwift"]),
+    ],
     dependencies: [
-            .Package(url: "https://github.com/BiAtoms/Socket.swift.git", majorVersion: 2, minor: 0),
-            .Package(url: "https://github.com/BiAtoms/Request.swift.git", majorVersion: 2, minor: 0),//for tests
-        ]
+        .package(url: "https://github.com/tachyonics/Socket.swift.git", .upToNextMajor(from: "2.1.0")),
+        .package(url: "https://github.com/tachyonics/Request.swift.git", .upToNextMajor(from: "2.0.0")) //for tests
+    ],
+    targets: [
+        .target(name: "HttpSwift", 
+                dependencies: ["SocketSwift", "RequestSwift"]),
+    ]
 )
