@@ -36,9 +36,13 @@ open class File {
     }
 }
 #if os(Linux)
+#if swift(>=4.1)
+#else
+    // Bridge required for Swift 4.0 and below
     private extension ObjCBool {
         var boolValue: Bool {
             return self
         }
     }
+#endif
 #endif
